@@ -1,0 +1,79 @@
+<div class="parentContainer">
+  <div class="childContainer">
+  
+      <div class="divLeft">
+        <img src="../../assets/images/syflogo2.png" style="width:80%;height: auto; padding-top: 60%;padding-left: 10%;padding-right: 10%"/>
+      
+     
+      </div>
+      
+      <div class="divRight" style="padding-left: 5% " >
+
+        
+          <div style="height:75%;" >
+           <!--UserName-->
+           <div class="form-group row" ></div>
+           <div class="form-group row" style="padding-top:6%" >
+            <div class="col-sm-5">
+              <label class="form-label">Login</label>/Sign up
+            </div>
+             </div>
+             <div class="form-group row" ></div>
+             <div class="form-group row" ></div>
+             <div class="form-group row" ></div>
+             
+            <div class="form-group row"  >
+              
+              
+                <div class="col-sm-5">
+                  <input type="username" 
+                      [(ngModel)]="uid"  placeholder="Username"/>
+                </div>
+               
+            </div>
+           <!-- -->   
+            <!--Password-->
+            <hr>
+            <div class="form-group row" style="margin-bottom: 10px;"   >
+              
+               
+                  <div class="col-sm-4">
+                      <!-- <input type="password" id="logInPassword" name="password" class="toggle-password" data-toggle="password" style="border:none"   [(ngModel)]="password"  placeholder="Password" /> -->
+                      <input type="password"  
+                      [(ngModel)]="pwd"  placeholder="Password" />
+                     
+                    </div>
+                
+              </div>
+              <hr>
+            <!-- --> 
+              <div class=" form-group  alert alert-danger" style="padding-left: 1%; text-align: center;width: 98%;font-size: 12px; " *ngIf="errormessage">
+             
+                {{errormessage}}
+                </div>
+               
+          </div>
+
+          <!---->
+          <div style="height: 19%;" >
+            <div class="form-group row" id="divid">
+              <div class="col-sm-3">
+                <button type="button" class="logIn" ><i class="fa fa-sign-in" aria-hidden="true" (click)="ValidateUserLogIn(uid,pwd)" ></i> Log In</button>
+                  
+              </div>
+              <div class="col-sm-5">
+                  <a (click)='rgisterAccount()'> Don't have an <span style="font-weight: bold"> Account?</span></a>
+              </div>
+              <div class="col-sm-4">
+                <a  (click)='forgotPassword()'>Forgot <span style="font-weight: bold">Password?</span></a>
+              </div>
+
+          </div>
+
+          </div>
+          <!---->
+        
+
+      </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<form  class="userdetail-form" #userdetailForm="ngForm">
+  <input type="hidden" name="ID" #ID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ID">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input  class="form-control" name="FirstName" #FirstName="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.FirstName" placeholder="First Name" required>
+    <div class="validation-error" *ngIf="FirstName.invalid && LastName.touched">This field is required !</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input  class="form-control" name="LastName" #LastName="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.LastName" placeholder="Last Name" required >
+      <div class="validation-error" *ngIf="LastName.invalid && LastName.touched">This field is required !</div>
+    </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input  class="form-control" name="SSOID" #SSOID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.SSOID" placeholder="SSOID  ">
+      </div>
+      <div class="form-group col-md-6">
+        <input  class="form-control" name="Gender" #Gender="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.Gender" placeholder="Gender" >
+      </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input  class="form-control" name="ProfEnailID" #ProfEnailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ProfEmailID" placeholder="Prof EmailID">
+        </div>
+        <div class="form-group col-md-6">
+          <input  class="form-control" name="PersonalEmailID" #PersonalEmailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.PersonalEmailID" placeholder="Personal EmailID" >
+        </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input  class="form-control" name="ReportingManagerID" #ReportingManagerID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ReportingManagerID" placeholder="Reporting Manager">
+    </div>
+    <div class="form-group col-md-6">
+      <input  class="form-control" name="RoleID" #RoleID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.RoleID" placeholder="Role" >
+    </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-8">
+    <button type="submit" [disabled]="!userdetailForm.valid" class="btn btn-lg btn-block btn-info" (click)="onSubmit(userdetailForm)"><i class="fa fa-floppy-o"></i> Submit</button> 
+  </div>
+  <div class="form-group col-md-4">
+    <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(userdetailForm)"> <i class="fa fa-repeat"></i> Reset</button> 
+  </div>
+</div>
+</form>
