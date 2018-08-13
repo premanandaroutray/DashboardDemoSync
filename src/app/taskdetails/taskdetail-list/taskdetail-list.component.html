@@ -1,0 +1,23 @@
+<table id="userdetails" >
+    <tr >
+        <td>Task Name</td>
+        <td>Project Name</td>
+        <td>Hours Spend</td>
+        <td>Role Name</td>
+        <td>Edit/Delete</td>
+    </tr>
+    <tr *ngFor="let task of taskDetailService.taskDetailList">
+        <td>{{task.TaskName }}</td>
+        <td>{{task.ProjectName}}</td>
+        <td>{{task.HoursSpend}}</td>
+        <td>{{task.RoleName}}</td>
+        <td>
+          <a  class="btn" (click)="showForEdit(task)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a  class="btn text-danger" (click)="onDelete(task.TaskID)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+</table>

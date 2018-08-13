@@ -1,0 +1,21 @@
+<table class="table-sm table hover">
+    <tr>
+        <td>User Code</td>
+        <td>User Name</td>
+        <td>Role</td>
+        <td>Edit/Delete</td>
+    </tr>
+<tr *ngFor="let user of UserService.userList">
+    <td>{{user.UserCode }}</td>
+    <td>{{user.UserName }}</td>
+    <td>{{user.RoleName }}</td>
+    <td>
+      <a  class="btn" (click)="showForEdit(user)">
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+      <a  class="btn text-danger" (click)="onDelete(user.ID)">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+</tr>
+</table>

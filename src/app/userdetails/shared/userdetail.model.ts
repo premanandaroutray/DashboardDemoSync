@@ -7,8 +7,18 @@ export class Userdetail {
 	Phone :string; 
 	ProfEmailID :string; 
 	PersonalEmailID:string;  
-	ReportingManagerID:string; 
+	ReportingManagerID:number; 
 	RoleID :number;
 	
 
 }
+export class ReportingManagers{
+	ReportingManagerID : number;
+	ReportingManagerName:string
+}
+
+export class Roles{
+	ID : number;
+	RoleName:string
+}
+
