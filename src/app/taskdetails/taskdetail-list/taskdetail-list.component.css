@@ -1,0 +1,24 @@
+/* #userdetails {
+    border-collapse: collapse;
+    width: 100% ;
+    border-radius: 5px / 5px; 
+    box-shadow:0 0 18px rgba(0,0,0,0.6);
+    }
+    
+    #userdetails td, #userdetails th 
+    {
+    border: 1px solid #ddd;
+    padding: 2px;
+    }
+    
+    #userdetails tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #userdetails tr:hover {background-color: #ddd;}
+    
+    #userdetails th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #17a2b8;
+    color: white;
+    }  */

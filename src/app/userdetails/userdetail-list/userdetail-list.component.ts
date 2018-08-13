@@ -13,6 +13,8 @@ export class UserdetailListComponent implements OnInit {
 
   ngOnInit() {
     this.userDetailService.getUserDetailsList();
+    this.userDetailService.getManagersList();
+    this.userDetailService.getRoletList();
   }
   showForEdit(userDetails:Userdetail)
   {

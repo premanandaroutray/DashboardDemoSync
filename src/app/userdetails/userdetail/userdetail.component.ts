@@ -36,22 +36,22 @@ export class UserdetailComponent implements OnInit {
   {
     if(form.value.ID==null)
     {
-this.userDetailService.postUserDetails(form.value)
-.subscribe(data=>{
-  this.resetForm(form);
-  this.userDetailService.getUserDetailsList();
-  this.toastrService.success('New record Added Sucessfully','UserDetail Register');
-})
+      this.userDetailService.postUserDetails(form.value)
+      .subscribe(data=>{
+        this.resetForm(form);
+        this.userDetailService.getUserDetailsList();
+        this.toastrService.success('New record Added Sucessfully','UserDetail Register');
+      })
     }
     else
     {
       this.userDetailService.putUserDetails(form.value.ID,form.value)
-.subscribe(data=>{
-  this.resetForm(form);
-  this.userDetailService.getUserDetailsList();
-  this.toastrService.success('Record Updated Sucessfully','UserDetail Register');
-    })
-  }
+      .subscribe(data=>{
+        this.resetForm(form);
+        this.userDetailService.getUserDetailsList();
+        this.toastrService.success('Record Updated Sucessfully','UserDetail Register');
+          })
+    }
   }
 
 }

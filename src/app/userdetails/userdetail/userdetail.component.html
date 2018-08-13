@@ -3,7 +3,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <input  class="form-control" name="FirstName" #FirstName="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.FirstName" placeholder="First Name" required>
-    <div class="validation-error" *ngIf="FirstName.invalid && LastName.touched">This field is required !</div>
+    <div class="validation-error" *ngIf="FirstName.invalid && FirstName.touched">This field is required !</div>
     </div>
     <div class="form-group col-md-6">
       <input  class="form-control" name="LastName" #LastName="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.LastName" placeholder="Last Name" required >
@@ -15,24 +15,51 @@
         <input  class="form-control" name="SSOID" #SSOID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.SSOID" placeholder="SSOID  ">
       </div>
       <div class="form-group col-md-6">
-        <input  class="form-control" name="Gender" #Gender="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.Gender" placeholder="Gender" >
+          <select  class="form-control" name="Gender" #Gender="ngModel"  [(ngModel)]="userDetailService.selectedUserDetail.Gender">
+          <option value="" disabled select>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+      </select>   
       </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <input  class="form-control" name="ProfEnailID" #ProfEnailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ProfEmailID" placeholder="Prof EmailID">
+        <div class="form-group col-md-6" [class.has-error]="ProfEmailID.invalid && ProfEmailID.touched">
+          <input  class="form-control" name="ProfEmailID" #ProfEmailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ProfEmailID" placeholder="Prof EmailID" required email>
+          <div class="validation-error" *ngIf="ProfEmailID.errors && ProfEmailID.errors.required && ProfEmailID.touched">Prof.EmailID field is required !</div>
+          <div class="validation-error" *ngIf="ProfEmailID.errors && ProfEmailID.errors.email && ProfEmailID.touched">Prof.EmailID field is invalid !</div>
+
         </div>
-        <div class="form-group col-md-6">
-          <input  class="form-control" name="PersonalEmailID" #PersonalEmailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.PersonalEmailID" placeholder="Personal EmailID" >
+        <div class="form-group col-md-6" [class.has-error]="PersonalEmailID.invalid && PersonalEmailID.touched">
+          <input  class="form-control" name="PersonalEmailID" #PersonalEmailID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.PersonalEmailID" placeholder="Personal EmailID" required email>
+          <div class="validation-error" *ngIf="PersonalEmailID.errors && PersonalEmailID.errors.required && PersonalEmailID.touched">Personal EmailID field is required !</div>
+          <div class="validation-error" *ngIf="PersonalEmailID.errors && PersonalEmailID.errors.email && PersonalEmailID.touched">Personal EmailID field is invalid !</div>
+
         </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <input  class="form-control" name="ReportingManagerID" #ReportingManagerID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.ReportingManagerID" placeholder="Reporting Manager">
-    </div>
+     <select  class="form-control" name="ReportingManagerID" id="ReportingManagerID" [(ngModel)]="userDetailService.selectedUserDetail.ReportingManagerID">
+            <option value="" disabled select default>Select Reporting Manager</option>
+            <option [value]="reportManager.ReportingManagerID" *ngFor="let reportManager of userDetailService.reportingManagersList">  
+                {{reportManager.ReportingManagerName}}  
+          </option>  
+        </select>   
+      </div>
     <div class="form-group col-md-6">
-      <input  class="form-control" name="RoleID" #RoleID="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.RoleID" placeholder="Role" >
+       <select  class="form-control" name="RoleID" id="RoleID" [(ngModel)]="userDetailService.selectedUserDetail.RoleID">
+        <option value="" disabled select default>Select Role</option>
+        <option [value]="role.ID" *ngFor="let role of userDetailService.roleList">  
+            {{role.RoleName}}  
+      </option>  
+    </select>   
     </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <input  class="form-control" name="Phone" #Phone="ngModel" [(ngModel)]="userDetailService.selectedUserDetail.Phone" placeholder="Phone Number" required>
+    <div class="validation-error" *ngIf="Phone.invalid && Phone.touched">This field is required !</div> 
+  </div>
+  
 </div>
 <div class="form-row">
   <div class="form-group col-md-8">
