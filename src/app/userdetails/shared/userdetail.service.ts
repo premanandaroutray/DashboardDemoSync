@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise'
 export class UserdetailService {
 selectedUserDetail:Userdetail;
 userDetailList:Userdetail[];
-  constructor(private _http:Http) {
+constructor(private _http:Http) {
     
     
    }
@@ -41,6 +41,6 @@ userDetailList:Userdetail[];
       }
       deleteUserDetails(id:number)
       {
-return this._http.delete('http://10.200.44.21:1233/api/userdetails/'+id).map(res=>res.json());
+        return this._http.delete('http://10.200.44.21:1233/api/userdetails/'+id).map(res=>res.json());
       }
 }

@@ -1,0 +1,24 @@
+
+<div class="defaultdesign">
+    <div>Employee: {{loginservice.dasboardUserList[0].UserName}}</div>
+<div> Designation: {{loginservice.dasboardUserList[0].RoleName}}</div>
+<div>Project: {{loginservice.dasboardUserList[0].ProjectName}}</div>
+<div>ReportingManager: {{loginservice.dasboardUserList[0].ReportingManager}}</div>
+<div>
+    <br>
+    <table id="tasktable">
+        <tr>
+            <th>Task Done</th><th>Time Spent</th><th>Project</th>
+        </tr>
+        <tr  *ngFor="let task of loginservice.dashboardTaskList">
+        <td>{{task.TaskName}}</td>
+        <td>{{task.HoursSpend}}</td>
+        <td>{{task.ProjectName}}</td>
+
+
+        </tr>
+    </table>
+</div>
+
+
+</div>

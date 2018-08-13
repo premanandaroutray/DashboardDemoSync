@@ -1,0 +1,33 @@
+.defaultdesign{
+
+    width	: 100%;
+    height	: 220px;
+    background-color: #FFFFFF;
+    padding-top: 2%;
+    padding-left: 2%;
+    font-size: 11px;
+}
+
+#tasktable {
+    
+    border-collapse: collapse;
+    width: 100%;
+   
+}
+
+#tasktable td, #tasktable th {
+    border: 1px solid #ddd;
+    padding: 2px;
+}
+
+#tasktable tr:nth-child(even){background-color: #f2f2f2;}
+
+#tasktable tr:hover {background-color: #ddd;}
+
+#tasktable th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #17a2b8;
+    color: white;
+}

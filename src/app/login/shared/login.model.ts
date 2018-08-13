@@ -1,8 +1,9 @@
 export class Login {
     ID:number;
     UserCode:string;
-    Passwrod:string;
+    Password:string;
     RoleID:number;
     RoleName:string;
+    UserName:string;
 
 }

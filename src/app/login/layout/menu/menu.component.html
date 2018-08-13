@@ -1,0 +1,19 @@
+<nav class="navbar1   navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="../../assets/images/syflogo2.png" style="width:100px;height:39.5px;"/>
+            </div>
+   
+      <ul class="nav  nav-pills" style="display: block;" >
+    
+        <li routerLinkActive="active" *ngFor="let menu of loginservice.menuList"  ><a  [routerLink]="[menu.RouterLink]" > {{menu.MenuName}} </a></li> 
+      
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+        <li><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+       <li><app-userdisplay></app-userdisplay></li>
+      </ul> 
+     
+          
+    </div>
+   
+  </nav>
