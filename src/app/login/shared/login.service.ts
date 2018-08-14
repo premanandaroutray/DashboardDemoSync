@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { MenuModel } from './menu-model';
 import { Dashboard } from './dashboard.model';
 import { Dashboardtask } from './dashboardtask.model';
-
+import{AppConfig} from '../../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,12 @@ export class LoginService {
  menuList:MenuModel[];
 username:string;
 rolename:string;
-  constructor(private _http:Http) { }
+host:string;
+  constructor(private _http:Http,private config:AppConfig) { }
   getUserDetails(uid:string,pwd:string)
       {
-        this._http.get('http://10.200.44.21:1233/api/login/'+uid+'/'+pwd)
+        this.host=this.config.getConfig('host');
+        this._http.get('http://'+this.host+'/api/login/'+uid+'/'+pwd)
         .map((data:Response)=>{
           return data.json() as Login;    
          
@@ -47,7 +49,7 @@ rolename:string;
 
       getMenuDetails(roleID)
       {
-        this._http.get('http://10.200.44.21:1233/api/menus/'+roleID)
+        this._http.get('http://localhost:1233/api/menus/'+roleID)
         .map((data:Response)=>{
           return data.json() as MenuModel[];    
          
@@ -74,7 +76,7 @@ rolename:string;
 
     getProjectAndUserDetailsForDashboard(roleID)
     {
-      this._http.get('http://10.200.44.21:1233/api/dashboard/'+roleID)
+      this._http.get('http://localhost:1233/api/dashboard/'+roleID)
         .map((data:Response)=>{
           return data.json() as Dashboard[];    
          
@@ -89,7 +91,7 @@ rolename:string;
 
     getDashboardTaskByRole(roleID)
     {
-      this._http.get('http://10.200.44.21:1233/api/dashboardtask/'+roleID)
+      this._http.get('http://localhost:1233/api/dashboardtask/'+roleID)
         .map((data:Response)=>{
           return data.json() as Dashboardtask[];    
        

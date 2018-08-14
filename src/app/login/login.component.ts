@@ -4,22 +4,29 @@ import {LoginService} from '../login/shared/login.service';
 import { Login } from './shared/login.model';
 import {NgForm} from '@angular/forms';
 import { MenuModel } from './shared/menu-model';
-//import { EMPTY } from 'rxjs';
-import {ToastrService} from 'ngx-toastr'
+import{AppConfig} from '../app.config';
+import {ToastrService} from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[LoginService]
+  providers:[LoginService,]
+
+ 
 })
 export class LoginComponent implements OnInit {
   
   errormessage:String='';
+  host:string;
    user:Login=new Login();
    static dynamicMenuList:MenuModel[]=[];
-  constructor(private _router:Router,private loginservice:LoginService,private toster:ToastrService) { }
+  constructor(private _router:Router,private loginservice:LoginService,private toster:ToastrService,private config:AppConfig)
+   { }
 
   ngOnInit() {
+  this.host=this.config.getEnv('host');
+  console.log(this.host);
   }
   logme (userName,password)
   {

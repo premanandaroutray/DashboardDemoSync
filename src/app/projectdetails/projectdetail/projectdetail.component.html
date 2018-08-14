@@ -1,0 +1,29 @@
+<form class="project-form" #projectForm="ngForm">
+    <input type="hidden" name="ProjectID" #ProjectID="ngModel" [(ngModel)]="projectDetailService.selectedProjectDetail.ProjectID">  
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input  class="form-control" name="ProjectName" #ProjectName="ngModel" 
+            [(ngModel)]="projectDetailService.selectedProjectDetail.ProjectName" 
+            placeholder="Project Name" required>
+        <div class="validation-error" *ngIf="ProjectName.invalid && ProjectName?.touched">This field is required !</div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            
+                <button type="submit" [disabled]="!projectForm.valid" 
+                class="btn btn-primary" (click)="onSubmit(projectForm)">
+                <i class="fa fa-floppy-o"></i> Submit</button>
+            
+                <!-- <button type="button" class="btn btn-primary" 
+                (click)="resetForm(projectForm)"><i class="fa fa-repeat"></i> Reset</button>  -->
+            
+        </div>
+    
+        <div class="form-group col-md-2">
+            <button type="button" class="btn btn-primary" 
+            (click)="resetForm(projectForm)"><i class="fa fa-repeat"></i> Reset</button> 
+        </div>
+    </div>
+</form>
+ 

@@ -1,0 +1,17 @@
+<table id="userdetails">
+  <tr>
+    <th>ProjectName</th>
+    <th>Edit/Delete</th>
+  </tr>
+    <tr *ngFor="let prj of projectDetailService.projectDetailList">
+        <td>{{prj.ProjectName }}</td>
+        <td>
+          <a  class="btn" (click)="showForEdit(prj)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a  class="btn text-danger" (click)="onDelete(prj.ProjectID)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+    </tr>
+  </table>

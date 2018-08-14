@@ -12,7 +12,9 @@ export class LogarithimChartComponent implements OnInit {
   constructor(private loginservice:LoginService, private  AmCharts:AmChartsService) { }
 
   ngOnInit() {
-   
+    //this.loginservice.getDashboardTaskByRole(localStorage.getItem("loggedUserRole"));
+
+    
     //console.log(JSON.parse(JSON.stringify(this.loginservice.dashboardTaskList)));
   }
   ngAfterViewInit()
@@ -55,9 +57,9 @@ export class LogarithimChartComponent implements OnInit {
       } );
   }
 
-//   ngOnDestroy() {
-//     if (this.chart) 
-//       this.AmCharts.destroyChart(this.chart);
-//     }
+  // ngOnDestroy() {
+  //   if (this.chart) 
+  //     this.AmCharts.destroyChart(this.chart);
+  //   }
 
 }
