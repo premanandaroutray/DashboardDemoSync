@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AmChartsService,AmChart } from "@amcharts/amcharts3-angular";
-import { LoginService } from '../../login/shared/login.service';
+import { LoginService } from '../../../login/shared/login.service';
 
 @Component({
   selector: 'app-logarithim-chart',

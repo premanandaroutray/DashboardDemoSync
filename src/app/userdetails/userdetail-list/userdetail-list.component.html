@@ -1,10 +1,11 @@
 <table id="userdetails" >
 
-    <tr><th >Name</th> <th >Gender</th> <th >Edit</th> <th >Delete</th></tr>
+    <tr><th >Name</th> <th >Gender</th> <th>SSOID</th> <th >Edit</th> <th >Delete</th></tr>
   
   <tr  *ngFor="let user of userDetailService.userDetailList">
 <td>{{user.FirstName }}{{user.LastName }}</td>
-<td>{{user.Gender }}</td>
+<td>{{user.Gender }}</td><td>{{user.SSOID }}</td>
+
 <td>
   <a  class="btn" (click)="showForEdit(user)">
     <i class="fa fa-pencil-square-o"></i>

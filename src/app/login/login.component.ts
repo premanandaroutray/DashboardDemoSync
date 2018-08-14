@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
    { }
 
   ngOnInit() {
-  this.host=this.config.getEnv('host');
-  console.log(this.host);
+  // this.host=this.config.getEnv('host');
+  // console.log(this.host);
   }
   logme (userName,password)
   {
@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
  //console.log(userName+" "+password);
 
 //this.loginservice.getUserDetails(userName,password)[0].Passwrod;
-   
-     if(this.loginservice.getUserDetails(userName,password)!=null) 
+   this.user=this.loginservice.getUserDetails(userName,password)
+     if(this.user!=null) 
      {
-     this.user=this.loginservice.getUserDetails(userName,password) as Login
+    
      if(userName==this.user.UserCode && password==this.user.Password)
       {
     localStorage.setItem('loggedUserRole', this.user.RoleID.toString());

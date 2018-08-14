@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../login/shared/login.service';
+import { LoginService } from '../../../login/shared/login.service';
 
 @Component({
   selector: 'app-project-info',

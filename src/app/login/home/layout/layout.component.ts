@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import{LoginService} from '../shared/login.service';
-import{LoginComponent} from '../login.component'
+import{LoginService} from '../../shared/login.service';
+import{LoginComponent} from '../../login.component'
 
 @Component({
   selector: 'app-layout',
