@@ -20,6 +20,7 @@ projectDetailList:Projectdetail[];
       postProjectDetails(proj:Projectdetail)
       {
         var body= JSON.stringify(proj);
+        console.log(body);
         var headerOptions=new Headers({'Content-Type':'application/json'});
         var requestOptions=new RequestOptions({method:RequestMethod.Post,   headers:headerOptions});
         return this._http.post('http://localhost:1233/api/projects',body,requestOptions).map(x=>x.json());

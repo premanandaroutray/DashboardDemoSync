@@ -1,4 +1,4 @@
-<table id="userdetails">
+<!-- <table id="userdetails">
   <tr>
     <th>ProjectName</th>
     <th>Edit/Delete</th>
@@ -14,4 +14,56 @@
           </a>
         </td>
     </tr>
+  </table> -->
+
+
+
+  <!-- <nav class="navbar">
+   
+  </nav> -->
+  <table>
+      <tr style="padding-bottom: 5px ;float:right"> 
+    
+     
+          <input   placeholder="search by project" type="text" name="search" [(ngModel)]="filter">      
+        
+      
+    </tr>
+   
+    <tr>
+        <table  id="userdetails">
+
+        
+    
+            <thead>
+              
+              <tr>
+                <th (click)="sort('ProjectName')">Project Name
+                  <span class="glyphicon sort-icon" *ngIf="key =='ProjectName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prj of projectDetailService.projectDetailList | orderBy: key : reverse | filter:filter | paginate:  {itemsPerPage: 5, currentPage: p}; ">
+                  <td>{{prj.ProjectName }}</td>
+                  <td>
+                    <a  class="btn" (click)="showForEdit(prj)">
+                      <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                   
+                  </td>
+                  <td>
+                    <a  class="btn text-danger" (click)="onDelete(prj.ProjectID)">
+                      <i class="fa fa-trash-o"></i>
+                    </a>
+                  </td>
+              </tr>
+              <tr> <td colspan="3"> <pagination-controls (pageChange)="p = $event"></pagination-controls></td></tr>
+            </tbody>
+           
+          </table>
+    </tr>
   </table>
+ 

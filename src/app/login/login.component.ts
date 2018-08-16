@@ -27,9 +27,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   // this.host=this.config.getEnv('host');
   // console.log(this.host);
+  localStorage.setItem('url_host',this.config.getConfig('host'));
   }
   logme (userName,password)
   {
+    
     //this.errormessage='';
  //console.log(userName+" "+password);
 

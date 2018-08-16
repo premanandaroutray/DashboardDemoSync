@@ -23,8 +23,8 @@ host:string;
   constructor(private _http:Http,private config:AppConfig) { }
   getUserDetails(uid:string,pwd:string)
       {
-        this.host=this.config.getConfig('host');
-        this._http.get('http://'+this.host+'/api/login/'+uid+'/'+pwd)
+        //this.host=localStorage.getItem('url_host').toString();
+        this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/login/'+uid+'/'+pwd)
         .map((data:Response)=>{
           return data.json() as Login;    
          
@@ -49,7 +49,7 @@ host:string;
 
       getMenuDetails(roleID)
       {
-        this._http.get('http://localhost:1233/api/menus/'+roleID)
+        this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/menus/'+roleID)
         .map((data:Response)=>{
           return data.json() as MenuModel[];    
          
@@ -76,7 +76,7 @@ host:string;
 
     getProjectAndUserDetailsForDashboard(roleID)
     {
-      this._http.get('http://localhost:1233/api/dashboard/'+roleID)
+      this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/dashboard/'+roleID)
         .map((data:Response)=>{
           return data.json() as Dashboard[];    
          
@@ -91,7 +91,7 @@ host:string;
 
     getDashboardTaskByRole(roleID)
     {
-      this._http.get('http://localhost:1233/api/dashboardtask/'+roleID)
+      this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/dashboardtask/'+roleID)
         .map((data:Response)=>{
           return data.json() as Dashboardtask[];    
        

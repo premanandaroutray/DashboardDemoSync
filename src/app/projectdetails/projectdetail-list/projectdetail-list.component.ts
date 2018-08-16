@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectdetailService } from '../shared/projectdetail.service'
 import { Projectdetail} from '../shared/projectdetail.model'
 import {ToastrService} from 'ngx-toastr';
+import {PaginatePipe} from 'ngx-pagination';
+import { Ng2SearchPipe } from 'ng2-search-filter';
+import { Ng2OrderPipe } from 'ng2-order-pipe';
 
 @Component({
   selector: 'app-projectdetail-list',
@@ -9,6 +12,18 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./projectdetail-list.component.css']
 })
 export class ProjectdetailListComponent implements OnInit {
+
+    //initializing (p)page to one as default page setting
+    p: number = 1;
+
+    //sorting
+    key: string = 'ProjectName';
+    reverse: boolean = false;
+    sort(key){
+      this.key = key;
+      this.reverse = !this.reverse;
+    }
+  
 
   constructor(private projectDetailService:ProjectdetailService, private toastr:ToastrService) { }
 

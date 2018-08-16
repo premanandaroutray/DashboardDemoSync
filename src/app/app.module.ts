@@ -9,6 +9,12 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { UserdetailComponent } from './userdetails/userdetail/userdetail.component';
 import { UserdetailListComponent } from './userdetails/userdetail-list/userdetail-list.component';
 import {ToastrModule} from 'ngx-toastr';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe'; 
+ 
+
+
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './login/home/layout/layout.component';
 import { HomeComponent } from './login/home/home.component';
@@ -36,9 +42,9 @@ import {ProjectdetailComponent} from './projectdetails/projectdetail/projectdeta
 import { APP_INITIALIZER } from '@angular/core';
 import{AppConfig} from './app.config';
 
-export function initConfig(config: AppConfig) {
-  return () => config.load();
-}
+// export function initConfig(config: AppConfig) {
+//   return () => config.load();
+// }
 const ROUTES:Routes=
 [
 
@@ -68,18 +74,18 @@ const ROUTES:Routes=
     {path:'projects',component:ProjectdetailsComponent},
        {path:'users',component:UsersComponent},
      {path:'roles',component:RolesComponent},
-    
-    
+
+
 ]
 },
 { path: '',redirectTo:'/login', pathMatch: 'full' }
 
 ]
 
-  
-  
 
-  
+
+
+
 //import { LayoutComponent } from './layout/layout.component';
 
 
@@ -133,9 +139,12 @@ const ROUTES:Routes=
     FormsModule,
     HttpModule,
     AmChartsModule,
-    RouterModule.forRoot(ROUTES) , 
+    RouterModule.forRoot(ROUTES) ,
     ToastrModule.forRoot(),
-    
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule
+
   ],
   providers: [AppConfig,
     {
