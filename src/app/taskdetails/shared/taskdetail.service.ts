@@ -25,18 +25,18 @@ roleList:Roles[];
         var body= JSON.stringify(task);
         var headerOptions=new Headers({'Content-Type':'application/json'});
         var requestOptions=new RequestOptions({method:RequestMethod.Post,   headers:headerOptions});
-        return this._http.post('http://localhost:1233/api/taskdetails',body,requestOptions).map(x=>x.json());
+        return this._http.post('http://'+localStorage.getItem('url_host').toString()+'/api/taskdetails',body,requestOptions).map(x=>x.json());
       }
       putTaskDetails(id,task)
       {
         var body=JSON.stringify(task);
         var headerOptions=new Headers({'Content-Type':'application/json'});
         var requestOptions=new RequestOptions({method:RequestMethod.Put,   headers:headerOptions});
-        return this._http.put('http://localhost:1233/api/taskdetails/'+id,body,requestOptions).map(res=>res.json());
+        return this._http.put('http://'+localStorage.getItem('url_host').toString()+'/api/taskdetails/'+id,body,requestOptions).map(res=>res.json());
       }
       getTaskDetailsList()
       {
-        this._http.get('http://localhost:1233/api/taskdetails')
+        this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/taskdetails')
         .map((data:Response)=>{
           return data.json() as Taskdetail[];
         }).
@@ -47,7 +47,7 @@ roleList:Roles[];
       getProjectList()
       {
         
-        this._http.get('http://localhost:1233/api/projects')
+        this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/projects')
         .map((data:Response)=>{
           return data.json() as Projects[];
         }).
@@ -58,7 +58,7 @@ roleList:Roles[];
       }
       getRoletList()
       {
-        this._http.get('http://localhost:1233/api/roles')
+        this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/roles')
         .map((data:Response)=>{
           return data.json() as Roles[];
         }).
@@ -69,6 +69,6 @@ roleList:Roles[];
       }
       deleteTaskDetails(id:number)
       {
-          return this._http.delete('http://localhost:1233/api/taskdetails/'+id).map(res=>res.json());
+          return this._http.delete('http://'+localStorage.getItem('url_host').toString()+'/api/taskdetails/'+id).map(res=>res.json());
       }
 }

@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import{MatDialogModule}from '@angular/material';
+import{MatCardModule}from '@angular/material';
+import{MatButtonModule}from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import{Routes,RouterModule} from '@angular/router';
@@ -12,7 +16,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe'; 
- 
+
 
 
 import { LoginComponent } from './login/login.component';
@@ -41,6 +45,10 @@ import {ProjectdetailListComponent} from './projectdetails/projectdetail-list/pr
 import {ProjectdetailComponent} from './projectdetails/projectdetail/projectdetail.component';
 import { APP_INITIALIZER } from '@angular/core';
 import{AppConfig} from './app.config';
+import{DrilldowngridComponent} from './login/home/drilldowngrid/drilldowngrid.component';
+import { DrilldownGridEasyUIComponent } from './login/home/drilldown-grid-easy-ui/drilldown-grid-easy-ui.component';
+import { NestedDatatableComponent } from './login/home/nested-datatable/nested-datatable.component';
+import { NestedgridmodalComponent } from './login/home/nestedgridmodal/nestedgridmodal.component';
 
 // export function initConfig(config: AppConfig) {
 //   return () => config.load();
@@ -59,6 +67,9 @@ const ROUTES:Routes=
   //   path:'userdetails',component:UserdetailsComponent,
   //   children:[{path:'',component:LayoutComponent}]
   // },
+  {path: 'nesteddatatable', component: NestedDatatableComponent },
+  {path: 'drilldown', component: DrilldowngridComponent },
+  {path: 'drilldowneasyui', component: DrilldownGridEasyUIComponent },
    {path: 'login', component: LoginComponent },
   // {path:'layout',component:LayoutComponent},
   { path: 'layout', component: LayoutComponent,children:
@@ -131,11 +142,16 @@ const ROUTES:Routes=
     RoleListComponent,
     ProjectdetailsComponent,
     ProjectdetailListComponent,
-    ProjectdetailComponent
+    ProjectdetailComponent,
+    DrilldowngridComponent,
+    DrilldownGridEasyUIComponent,
+    NestedDatatableComponent,
+    NestedgridmodalComponent
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     AmChartsModule,
@@ -143,9 +159,14 @@ const ROUTES:Routes=
     ToastrModule.forRoot(),
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule
 
   ],
+  entryComponents:[NestedgridmodalComponent]
+  ,
   providers: [AppConfig,
     {
     provide: APP_INITIALIZER,
