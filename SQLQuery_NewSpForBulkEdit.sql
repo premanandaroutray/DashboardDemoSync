@@ -55,4 +55,15 @@ WITH (FirstName varchar(50)
 	 ,OfficeEmaiID varchar(50)	)
 END
 GO
-
+/****** Object:  UserDefinedTableType [dbo].[EmployeeType]    Script Date: 12/17/2018 4:16:26 PM ******/
+CREATE TYPE [dbo].[EmployeeType] AS TABLE(
+	[FirstName] [varchar](50) NULL,
+	[LastName] [varchar](50) NULL,
+	[PresentAddress] [varchar](100) NULL,
+	[PermanentAddress] [varchar](100) NULL,
+	[PersonalContactNumber] [varchar](15) NULL,
+	[OfficeContactNumber] [varchar](15) NULL,
+	[PersonalEmailID] [varchar](50) NULL,
+	[OfficeEmailID] [varchar](50) NULL
+)
+GO
