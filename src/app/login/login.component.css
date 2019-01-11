@@ -12,6 +12,17 @@
     font-family: MyriadPro-Regular;
     
 }
+.invalid-textbox{
+
+  color:red;
+  
+}
+.validation-message{
+  font-family: MyriadPro-Regular;
+  font-size:10px;
+  display: block;
+  color:orange;
+}
 
 .childContainer {
   /*background-image:url("Images/loginScreen.jpg");*/

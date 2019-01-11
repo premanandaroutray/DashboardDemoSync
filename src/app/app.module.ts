@@ -5,7 +5,9 @@ import{MatDialogModule}from '@angular/material';
 import{MatCardModule}from '@angular/material';
 import{MatButtonModule}from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule,} from '@angular/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http'
+
 import{Routes,RouterModule} from '@angular/router';
 import { AmChartsModule} from "@amcharts/amcharts3-angular";
 import { AppComponent } from './app.component';
@@ -49,7 +51,9 @@ import{DrilldowngridComponent} from './login/home/drilldowngrid/drilldowngrid.co
 import { DrilldownGridEasyUIComponent } from './login/home/drilldown-grid-easy-ui/drilldown-grid-easy-ui.component';
 import { NestedDatatableComponent } from './login/home/nested-datatable/nested-datatable.component';
 import { NestedgridmodalComponent } from './login/home/nestedgridmodal/nestedgridmodal.component';
-
+import{AuthGuard}from '../app/auth/auth.guard';
+import {AuthInterceptor} from '../app/auth/auth.interceptor';
+import{HttpClientModule,HTTP_INTERCEPTORS}from '@angular/common/http'
 // export function initConfig(config: AppConfig) {
 //   return () => config.load();
 // }
@@ -72,19 +76,19 @@ const ROUTES:Routes=
   {path: 'drilldowneasyui', component: DrilldownGridEasyUIComponent },
    {path: 'login', component: LoginComponent },
   // {path:'layout',component:LayoutComponent},
-  { path: 'layout', component: LayoutComponent,children:
+  { path: 'layout', component: LayoutComponent,canActivate:[AuthGuard],children:
   [
     {
-    path:'home',component:HomeComponent
+    path:'home',component:HomeComponent,canActivate:[AuthGuard]
     },
     {
-      path:'userdetails',component:UserdetailsComponent
+      path:'userdetails',component:UserdetailsComponent,canActivate:[AuthGuard]
     },
 
-    {path:'taskDetails',component:TaskdetailsComponent},
-    {path:'projects',component:ProjectdetailsComponent},
-       {path:'users',component:UsersComponent},
-     {path:'roles',component:RolesComponent},
+    {path:'taskDetails',component:TaskdetailsComponent,canActivate:[AuthGuard]},
+    {path:'projects',component:ProjectdetailsComponent,canActivate:[AuthGuard]},
+       {path:'users',component:UsersComponent,canActivate:[AuthGuard]},
+     {path:'roles',component:RolesComponent,canActivate:[AuthGuard]},
 
 
 ]
@@ -146,7 +150,8 @@ const ROUTES:Routes=
     DrilldowngridComponent,
     DrilldownGridEasyUIComponent,
     NestedDatatableComponent,
-    NestedgridmodalComponent
+    NestedgridmodalComponent,
+  
 
   ],
   imports: [
@@ -154,6 +159,7 @@ const ROUTES:Routes=
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+  HttpClientModule,
     AmChartsModule,
     RouterModule.forRoot(ROUTES) ,
     ToastrModule.forRoot(),
@@ -162,12 +168,18 @@ const ROUTES:Routes=
     Ng2OrderModule,
     MatDialogModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+ 
 
   ],
   entryComponents:[NestedgridmodalComponent]
   ,
-  providers: [AppConfig,
+ 
+  providers: [ {provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true},
+    AuthGuard,AppConfig,
+    
     {
     provide: APP_INITIALIZER,
     useFactory: (config: AppConfig) => () => config.load(),

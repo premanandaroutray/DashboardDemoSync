@@ -8,6 +8,8 @@ import { MenuModel } from './menu-model';
 import { Dashboard } from './dashboard.model';
 import { Dashboardtask } from './dashboardtask.model';
 import{AppConfig} from '../../app.config';
+import { JsonPipe } from '@angular/common';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +22,57 @@ export class LoginService {
 username:string;
 rolename:string;
 host:string;
-  constructor(private _http:Http,private config:AppConfig) { }
+noAuthHeader={headers : new HttpHeaders({'Content-Type':'application/json','Authorization':'False'})}; 
+ 
+  constructor(private _http:HttpClient,private config:AppConfig) { }
+  logIn(authCredentials){
+    
+return this._http.post('http://'+localStorage.getItem('url_host').toString()+'/api/login/jwt',authCredentials,this.noAuthHeader); //,this.noAuthHeader
+  }
+
+  setToken(token:string)
+  {
+localStorage.setItem('token',token);
+  }
+  deleteToken()
+    {
+localStorage.removeItem('token');
+    }
+  
+getUserPayload()
+  {
+   var token= localStorage.getItem('token');
+   if(token){
+     var userPayLoad=atob(token.split('.')[1]);
+     return JSON.parse(userPayLoad);
+     
+   }
+   else
+   {
+     return null;
+   }
+  }
+  isLoggeIn()
+  {
+    var userpayload=this.getUserPayload();
+    if(userpayload)
+    {
+      return userpayload.exp > Date.now()/1000;
+    }
+    else
+    return false;
+  }
+
+  getToken()
+  {
+    return localStorage.getItem('token');
+  }
   getUserDetails(uid:string,pwd:string)
       {
         //this.host=localStorage.getItem('url_host').toString();
         this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/login/'+uid+'/'+pwd)
         .map((data:Response)=>{
-          return data.json() as Login;    
+          return data as any;    
          
         })
        
@@ -51,7 +97,7 @@ host:string;
       {
         this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/menus/'+roleID)
         .map((data:Response)=>{
-          return data.json() as MenuModel[];    
+          return data as any;    
          
         })
        . toPromise().then(x=>{
@@ -66,7 +112,11 @@ host:string;
         
        
       }
+getMenu(roleID)
+{
 
+  return this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/menus/'+roleID);
+}
     
     getUserDetail(userName,roleName)
     {
@@ -78,7 +128,7 @@ host:string;
     {
       this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/dashboard/'+roleID)
         .map((data:Response)=>{
-          return data.json() as Dashboard[];    
+          return data as any;    
          
         })
        . toPromise().then(x=>{
@@ -93,7 +143,7 @@ host:string;
     {
       this._http.get('http://'+localStorage.getItem('url_host').toString()+'/api/dashboardtask/'+roleID)
         .map((data:Response)=>{
-          return data.json() as Dashboardtask[];    
+          return data as any;    
        
         })
        . toPromise().then(x=>{

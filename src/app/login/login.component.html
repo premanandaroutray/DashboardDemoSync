@@ -1,4 +1,4 @@
-<form #loginForm="ngForm"  >
+<form #loginForm="ngForm" (ngSubmit)="loginForm.valid"   >
    <!-- (ngSubmit)="LogIn(UserName.value,Password.value)" -->
 <div class="parentContainer">
   <div class="childContainer">
@@ -26,8 +26,10 @@
                
                
                  <div class="col-sm-5">
-                    <input type="text" #UserName ngModel name="UserName" placeholder="UserName" required>
-                 </div>
+                    <!-- <input type="text" #UserName ngModel name="UserName" placeholder="UserName" required> -->
+                 <input type="text" name="userid" #userid="ngModel" [(ngModel)]="model.userid" placeholder="UserID" 
+                  required [ngClass]="{'invalid-textbox':loginForm.submitted && !userid.valid}">
+                  </div>
                 
              </div>
             <!-- -->   
@@ -38,12 +40,16 @@
                 
                    <div class="col-sm-4">
                        <!-- <input type="password" id="logInPassword" name="password" class="toggle-password" data-toggle="password" style="border:none"   [(ngModel)]="password"  placeholder="Password" /> -->
-                       <input type="password" #Password ngModel name="Password" placeholder="Password" required>
-                      
+                       <!-- <input type="password" #Password ngModel name="Password" placeholder="Password" required> -->
+                      <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password"
+                      required minlength="4" [ngClass]="{'invalid-textbox':loginForm.submitted && !password.valid  }" >
+                     <div *ngIf="loginForm.submitted && password.errors?.minlength">
+                       <label class="validation-message">Minimum 4 characters.</label>
                      </div>
+                    </div>
                  
                </div>
-               <div class=" form-group  alert alert-danger" style="padding-left: 1%; text-align: center;width: 98%;font-size: 12px; " *ngIf="errormessage">
+               <div class="form-group  alert alert-danger" style="padding-left: 1%; text-align: center;width: 98%;font-size: 12px; " *ngIf="errormessage">
                    
                       {{errormessage}}
                       </div>
@@ -51,7 +57,8 @@
                   <div class="col-sm-4">
                     </div>
                   <div class="col-sm-3">
-                    <button class="btn-primary " type="submit" (click)="logme(UserName.value,Password.value)"  [disabled]="!loginForm.valid" >Log In</button>
+                    <!-- <button  type="submit" (click)="logme(UserName.value,Password.value)"   [disabled]="!loginForm.valid" >Sing In</button> -->
+                  <button   (click)="onSubmit(loginForm)" class="btn-primary " > Sign In</button>
                   </div>
                 </div>
     
